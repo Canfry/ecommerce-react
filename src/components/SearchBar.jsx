@@ -9,13 +9,15 @@ export default function SearchBar() {
 
   return (
     <>
-      <input
-        type='text'
-        placeholder='Search...'
-        className='p-1 border-none bg-blue-100 rounded-md w-full'
-        onChange={handleChange}
-        value={searchProduct}
-      />
+      <div className='max-w-[30%] m-auto mt-4 mb-8'>
+        <input
+          type='text'
+          placeholder='Search...'
+          className='p-1 border-none bg-blue-100 rounded-md w-full'
+          onChange={handleChange}
+          value={searchProduct}
+        />
+      </div>
     </>
   );
 }
