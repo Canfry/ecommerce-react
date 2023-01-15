@@ -9,7 +9,7 @@ export default function SearchBar() {
 
   return (
     <>
-      <div className='max-w-[30%] m-auto mt-4 mb-8'>
+      <div className='max-w-[30%] m-auto mt-8 mb-8'>
         <input
           type='text'
           placeholder='Search...'

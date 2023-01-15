@@ -1,4 +1,8 @@
+import useStore from '../store/store';
+
 export default function Productitem({ product }) {
+  const addToCart = useStore((state) => state.addToCart);
+
   const { title, description, image, category, price, rating } = product;
 
   const shortDescription = description.slice(0, 200);
@@ -18,6 +22,7 @@ export default function Productitem({ product }) {
         <button className='bg-blue-200 cursor-pointer px-1 rounded-lg'>
           {category}
         </button>
+        <button onClick={addToCart}>Add to Cart</button>
       </div>
     </div>
   );

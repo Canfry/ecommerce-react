@@ -3,6 +3,7 @@ import SearchBar from '../components/SearchBar';
 
 import axios from 'axios';
 import ProductList from '../components/ProductList';
+import CategoryMenu from '../components/CategoryMenu';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -33,9 +34,7 @@ export default function Home() {
     <>
       <div className='max-w-[80%] m-auto mt-4'>
         <SearchBar />
-        {/* {products.map((product) => (
-          <h1>{product.title}</h1>
-        ))} */}
+        <CategoryMenu products={products} setProducts={setProducts} />
         <ProductList products={products} />
       </div>
     </>

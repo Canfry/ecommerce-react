@@ -1,7 +1,25 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import useStore from '../store/store';
 
 export default function Header() {
+  const count = useStore((state) => state.cartCount);
+  const user = useStore((state) => state.user);
+  const login = useStore((state) => state.login);
+  const logout = useStore((state) => state.logout);
+  const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
+
+  function userLogin() {
+    login();
+    setIsLogin(true);
+  }
+
+  function userLogout() {
+    logout();
+    setIsLogin(false);
+  }
+
   return (
     <div className='w-full bg-blue-500 h-[5rem]'>
       <div className='max-w-[80%] m-auto flex items-center justify-between h-full text-blue-100'>
@@ -10,6 +28,7 @@ export default function Header() {
             FryCommerce
           </Link>
         </div>
+        <div>{isLogin ? <h3>Welcome: {user}</h3> : ''}</div>
         <div className='flex items-center justify-between gap-8'>
           <Link
             to='/'
@@ -26,8 +45,12 @@ export default function Header() {
           <Link
             to='/cart'
             className={location.pathname === '/cart' ? 'text-blue-900' : ''}
+            style={{ position: 'relative' }}
           >
             Cart
+            <span className='px-1 absolute -top-1.5 -right-3 bg-red-500 text-white rounded-full z-10 text-xs'>
+              {count}
+            </span>
           </Link>
           <Link
             to='/contact'
@@ -35,6 +58,11 @@ export default function Header() {
           >
             Contact
           </Link>
+          {isLogin ? (
+            <button onClick={userLogout}>Logout</button>
+          ) : (
+            <button onClick={userLogin}>Login</button>
+          )}
         </div>
       </div>
     </div>
