@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import useStore from '../store/store';
+import CartCount from './CartCount';
 
 export default function Header() {
-  const count = useStore((state) => state.cartCount);
   const user = useStore((state) => state.user);
   const login = useStore((state) => state.login);
   const logout = useStore((state) => state.logout);
@@ -48,9 +48,7 @@ export default function Header() {
             style={{ position: 'relative' }}
           >
             Cart
-            <span className='px-1 absolute -top-1.5 -right-3 bg-red-500 text-white rounded-full z-10 text-xs'>
-              {count}
-            </span>
+            <CartCount />
           </Link>
           <Link
             to='/contact'

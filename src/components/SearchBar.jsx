@@ -1,11 +1,27 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
-export default function SearchBar() {
+export default function SearchBar({ products, setProducts, cachedFunction }) {
   const [searchProduct, setSearchProduct] = useState('');
 
   function handleChange(e) {
+    if (e.target.value === '') {
+      cachedFunction();
+    }
     setSearchProduct(e.target.value);
+    setProducts(filteredProducts);
   }
+
+  const filteredProducts = useMemo(
+    () =>
+      products.filter((product) =>
+        (
+          product.title.toLowerCase() || product.description.toLowerCase()
+        ).includes(searchProduct.toLowerCase())
+      ),
+    [products, searchProduct]
+  );
+
+  console.log(filteredProducts);
 
   return (
     <>

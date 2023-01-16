@@ -1,37 +1,37 @@
-import { useState } from 'react';
-
-export default function CategoryMenu({ products, setProducts }) {
-  const [categoryList, setCategoryList] = useState([]);
+export default function CategoryMenu({
+  cachedFunction,
+  products,
+  setProducts,
+}) {
   const catArray = products.map((product) => product.category);
-
-  // console.log(catArray);
-
   const catList = new Set(catArray);
-  // console.log(catList);
-  const itemList = [...catList];
+  const categoryList = Array.from(catList); // or categoryList = [...catList]
 
-  console.log(itemList);
+  // console.log(products);
+
+  function clickAll() {
+    cachedFunction();
+  }
 
   function clickCategory(e) {
-    itemList.forEach((it) => {
-      const category = e.target.textContent;
-      console.log(category);
-
-      const filteredItems = products.filter(
-        (product) => it.category === product.category
-      );
-
-      console.log(filteredItems);
-      setProducts(filteredItems);
-      setCategoryList([...categoryList, itemList]);
-    });
+    const category = e.target.textContent;
+    const filteredItems = products.filter(
+      (product) => product.category === category
+    );
+    setProducts(filteredItems);
   }
 
   return (
     <div className='mb-8 mt-16'>
       <ul className='flex items-center gap-8 justify-center'>
         <li>Categories: </li>
-        {itemList.map((item) => (
+        <button
+          onClick={clickAll}
+          className='bg-blue-200 cursor-pointer px-1 rounded-lg'
+        >
+          All
+        </button>
+        {categoryList.map((item) => (
           <li key={item}>
             <button
               value={item.category}
