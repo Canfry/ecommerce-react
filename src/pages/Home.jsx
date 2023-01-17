@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import SearchBar from '../components/SearchBar';
 
 import axios from 'axios';
 import ProductList from '../components/ProductList';
-import CategoryMenu from '../components/CategoryMenu';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -33,18 +31,12 @@ export default function Home() {
 
   return (
     <>
-      <div className='max-w-[80%] m-auto mt-4'>
-        <SearchBar
+      <div className='max-w-[80%] m-auto my-4'>
+        <ProductList
           products={products}
           setProducts={setProducts}
           cachedFunction={cachedFunction}
         />
-        <CategoryMenu
-          cachedFunction={cachedFunction}
-          products={products}
-          setProducts={setProducts}
-        />
-        <ProductList products={products} />
       </div>
     </>
   );

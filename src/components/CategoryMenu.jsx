@@ -7,8 +7,6 @@ export default function CategoryMenu({
   const catList = new Set(catArray);
   const categoryList = Array.from(catList); // or categoryList = [...catList]
 
-  // console.log(products);
-
   function clickAll() {
     cachedFunction();
   }

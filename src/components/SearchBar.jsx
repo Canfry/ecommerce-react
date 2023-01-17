@@ -1,12 +1,9 @@
 import { useState, useMemo } from 'react';
 
-export default function SearchBar({ products, setProducts, cachedFunction }) {
+export default function SearchBar({ products, setProducts }) {
   const [searchProduct, setSearchProduct] = useState('');
 
   function handleChange(e) {
-    if (e.target.value === '') {
-      cachedFunction();
-    }
     setSearchProduct(e.target.value);
     setProducts(filteredProducts);
   }
