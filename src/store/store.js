@@ -6,6 +6,26 @@ const useStore = create((set) => ({
   login: () => set(() => ({ user: 'Christophe Anfry' })),
   logout: () => set(() => ({ user: '' })),
   addToCartCount: () => set((state) => ({ cartCount: state.cartCount + 1 })),
+  clearCartCount: () => set(() => ({ cartCount: 0 })),
+  setProducts: () =>
+    set((state) => ({
+      products: [...state.products],
+    })),
+  products: [],
+  addProduct: (product) => {
+    set((state) => ({
+      products: [...state.products, product],
+    }));
+  },
+  removeProduct: (productId) => {
+    set((state) => ({
+      products: state.products.filter((product) => product.id !== productId),
+    }));
+  },
+  clearProducts: () =>
+    set(() => ({
+      products: [],
+    })),
 }));
 
 export default useStore;
