@@ -24,7 +24,7 @@ export default function Cart() {
           Clear Cart
         </button>
       </div>
-      <div>
+      <div className='flex flex-col items-center justify-center gap-16 my-8'>
         {products.map((product) => (
           <ProductCartItem key={product.id} product={product} />
         ))}
