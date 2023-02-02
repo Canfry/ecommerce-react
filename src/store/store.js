@@ -11,6 +11,9 @@ const useStore = create((set) => ({
 
   addToCartCount: () => set((state) => ({ cartCount: state.cartCount + 1 })),
 
+  deleteFromCartCount: () =>
+    set((state) => ({ cartCount: state.cartCount - 1 })),
+
   clearCartCount: () => set(() => ({ cartCount: 0 })),
 
   setProducts: () =>

@@ -21,7 +21,7 @@ export default function Cart() {
           className='rounded-md bg-blue-600 text-white py-1 px-2'
           disabled={products.length === 0 ? true : false}
         >
-          Clear Cart
+          Clear all
         </button>
       </div>
       <div className='flex flex-col items-center justify-center gap-16 my-8'>
