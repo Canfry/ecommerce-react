@@ -5,10 +5,11 @@ import useStore from '../store/store';
 
 export default function ProductCartItem({ product }) {
   const count = useStore((state) => state.cartCount);
-  const products = useStore((state) => state.products);
-  const clearProducts = useStore((state) => state.clearProducts);
+  // const products = useStore((state) => state.products);
+  // const clearProducts = useStore((state) => state.clearProducts);
   const addToCart = useStore((state) => state.addToCartCount);
   const removeFromCart = useStore((state) => state.deleteFromCartCount);
+  const removeProduct = useStore((state) => state.removeProduct);
 
   const [quantity, setQuantity] = useState(1);
 
@@ -18,6 +19,12 @@ export default function ProductCartItem({ product }) {
   }
 
   function decrement() {
+    setQuantity((prev) => prev - 1);
+    removeFromCart();
+  }
+
+  function deleteProduct() {
+    removeProduct(product.id);
     setQuantity((prev) => prev - 1);
     removeFromCart();
   }
@@ -39,7 +46,7 @@ export default function ProductCartItem({ product }) {
       </div>
       <div className='flex flex-col flex-1 items-center justify-center gap-4'>
         <div className='flex items-center justify-between gap-4'>
-          <button onClick={decrement}>
+          <button disabled={quantity > 1 ? false : true} onClick={decrement}>
             <BiChevronLeftCircle className='w-[24px] h-[24px]' />
           </button>
           <span className='text-xl'>{quantity}</span>
@@ -48,7 +55,10 @@ export default function ProductCartItem({ product }) {
           </button>
         </div>
         <div>
-          <button className='rounded-md bg-blue-600 text-white py-1 px-2'>
+          <button
+            onClick={deleteProduct}
+            className='rounded-md bg-blue-600 text-white py-1 px-2'
+          >
             Clear
           </button>
         </div>

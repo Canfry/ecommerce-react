@@ -19,7 +19,7 @@ export default function Cart() {
         <button
           onClick={onClick}
           className='rounded-md bg-blue-600 text-white py-1 px-2'
-          disabled={products.length === 0 ? true : false}
+          disabled={products.length === 0 && count === 0 ? true : false}
         >
           Clear all
         </button>

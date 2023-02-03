@@ -11,3 +11,14 @@ body {
   padding: 0;
   min-height: 100vh;
 }
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-disabled {
+  color: grey;
+  width: 24px;
+  height: 24px;
+}
